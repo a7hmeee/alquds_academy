@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بلدية القدس - بوابة الخدمات الإلكترونية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'arabic': ['Noto Sans Arabic', 'sans-serif'],
+                        'arabic-serif': ['Noto Naskh Arabic', 'serif'],
+                    },
+                    colors: {
+                        'municipal': {
+                            '50': '#f0fdf4',
+                            '100': '#dcfce7',
+                            '200': '#bbf7d0',
+                            '300': '#86efac',
+                            '400': '#4ade80',
+                            '500': '#22c55e',
+                            '600': '#16a34a',
+                            '700': '#15803d',
+                            '800': '#166534',
+                            '900': '#14532d',
+                        },
+                        'earth': {
+                            '50': '#fefce8',
+                            '100': '#fef9c3',
+                            '200': '#fef08a',
+                            '300': '#fde047',
+                            '400': '#facc15',
+                            '500': '#eab308',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            font-family: 'Noto Sans Arabic', sans-serif;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(22, 101, 52, 0.9) 0%, rgba(21, 128, 61, 0.85) 50%, rgba(22, 163, 74, 0.8) 100%);
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(34, 197, 94, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(34, 197, 94, 0.6); }
+        }
+
+        .service-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 50%, #15803d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+        }
+
+        .wave-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='0.1' d='M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,208C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: bottom;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: #22c55e;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 overflow-x-hidden">
+    <!-- Floating Navigation -->
+    <nav class="fixed top-4 left-4 right-4 z-50 glass-card rounded-2xl shadow-xl border border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-gradient-to-br from-municipal-500 to-municipal-700 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold text-gray-800">بلدية القدس</h1>
+                        <p class="text-xs text-gray-500">الخدمات الإلكترونية</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#" class="nav-link text-gray-700 hover:text-municipal-600 font-medium transition-colors">الرئيسية</a>
+                    <a href="#" class="nav-link text-gray-700 hover:text-municipal-600 font-medium transition-colors">الخدمات</a>
+                    <a href="#" class="nav-link text-gray-700 hover:text-municipal-600 font-medium transition-colors">المراجع والمدفوعات</a>
+                    <a href="#" class="nav-link text-gray-700 hover:text-municipal-600 font-medium transition-colors">التدريب والتثقيف</a>
+                    <a href="#" class="nav-link text-gray-700 hover:text-municipal-600 font-medium transition-colors">الشؤون</a>
+                    <a href="#" class="nav-link text-gray-700 hover:text-municipal-600 font-medium transition-colors">اتصل بنا</a>
+                </div>
+
+                <!-- Actions -->
+                <div class="flex items-center gap-3">
+                    <button class="p-2 rounded-xl hover:bg-gray-100 transition-colors">
+                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+                    <button class="px-4 py-2 bg-municipal-600 text-white rounded-xl font-medium hover:bg-municipal-700 transition-all hover:shadow-lg">
+                        بوابة الخدمات
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center overflow-hidden">
+        <!-- Background -->
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?w=1920&q=80" 
+                 alt="منظر جوي للقدس" 
+                 class="w-full h-full object-cover">
+            <div class="hero-gradient absolute inset-0"></div>
+        </div>
+
+        <!-- Animated Elements -->
+        <div class="absolute top-20 left-10 w-72 h-72 bg-municipal-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 floating"></div>
+        <div class="absolute bottom-20 right-10 w-72 h-72 bg-earth-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 floating" style="animation-delay: 1s;"></div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="text-white space-y-8">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+                        <span class="w-2 h-2 bg-municipal-400 rounded-full animate-pulse"></span>
+                        <span class="text-sm font-medium">الخدمات الإلكترونية متاحة الآن</span>
+                    </div>
+
+                    <h1 class="text-5xl lg:text-7xl font-bold leading-tight">
+                        مرحباً بكم في
+                        <span class="block text-municipal-300">بلدية القدس</span>
+                    </h1>
+
+                    <p class="text-xl text-white/80 leading-relaxed max-w-lg">
+                        نسعى لتقديم أفضل الخدمات البلدية بشفافية وشفافية وsuperior من مجتمع أفضل
+                    </p>
+
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#services" class="group px-8 py-4 bg-white text-municipal-700 rounded-2xl font-bold text-lg hover:bg-municipal-50 transition-all hover:shadow-2xl flex items-center gap-3">
+                            <span>استكشف الخدمات</span>
+                            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-2xl font-bold text-lg border border-white/30 hover:bg-white/20 transition-all flex items-center gap-3">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span>عرّف عنّا</span>
+                        </a>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-8 pt-8 border-t border-white/20">
+                        <div>
+                            <div class="text-4xl font-bold text-municipal-300">+50</div>
+                            <div class="text-white/70">خدمة إلكترونية</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-bold text-municipal-300">+100K</div>
+                            <div class="text-white/70">مواطن مسجل</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-bold text-municipal-300">24/7</div>
+                            <div class="text-white/70">خدمة متواصلة</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Access Card -->
+                <div class="hidden lg:block">
+                    <div class="glass-card rounded-3xl p-8 shadow-2xl">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6">الوصول السريع</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <a href="#" class="group p-4 bg-gradient-to-br from-municipal-50 to-municipal-100 rounded-2xl hover:from-municipal-100 hover:to-municipal-200 transition-all">
+                                <div class="w-12 h-12 bg-municipal-500 rounded-xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                    </svg>
+                                </div>
+                                <span class="font-bold text-gray-800">رخص البناء</span>
+                            </a>
+                            <a href="#" class="group p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl hover:from-blue-100 hover:to-blue-200 transition-all">
+                                <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                    </svg>
+                                </div>
+                                <span class="font-bold text-gray-800">الشهادات</span>
+                            </a>
+                            <a href="#" class="group p-4 bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl hover:from-amber-100 hover:to-amber-200 transition-all">
+                                <div class="w-12 h-12 bg-amber-500 rounded-xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"></path>
+                                    </svg>
+                                </div>
+                                <span class="font-bold text-gray-800">الفواتير</span>
+                            </a>
+                            <a href="#" class="group p-4 bg-gradient-to-br from-red-50 to-red-100 rounded-2xl hover:from-red-100 hover:to-red-200 transition-all">
+                                <div class="w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                                    </svg>
+                                </div>
+                                <span class="font-bold text-gray-800">الشكاوى</span>
+                            </a>
+                        </div>
+                        <a href="#" class="mt-6 w-full py-3 bg-municipal-600 text-white rounded-xl font-bold hover:bg-municipal-700 transition-all flex items-center justify-center gap-2">
+                            <span>عرض جميع الخدمات</span>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wave Divider -->
+        <div class="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Section Header -->
+            <div class="text-center mb-16 scroll-reveal">
+                <span class="inline-block px-4 py-2 bg-municipal-100 text-municipal-700 rounded-full text-sm font-bold mb-4">خدماتنا</span>
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 mb-4">الخدمات البلدية الإلكترونية</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">نوفر لكم مجموعة شاملة من الخدمات البلدية عبر بوابتنا الإلكترونية لتسهيل حياتكم اليومية</p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Service 1 -->
+                <div class="service-card scroll-reveal p-6 bg-gradient-to-br from-gray-50 to-white rounded-3xl border border-gray-100 hover:border-municipal-200 hover:shadow-xl cursor-pointer">
+                    <div class="w-16 h-16 bg-gradient-to-br from-municipal-500 to-municipal-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">رخص البناء</h3>
+                    <p class="text-gray-600 mb-4">تقديم طلبات رخص البناء ومتابعة حالتها إلكترونياً</p>
+                    <div class="flex items-center gap-2 text-municipal-600 font-bold group">
+                        <span>ابدأ الآن</span>
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card scroll-reveal p-6 bg-gradient-to-br from-gray-50 to-white rounded-3xl border border-gray-100 hover:border-blue-200 hover:shadow-xl cursor-pointer" style="transition-delay: 0.1s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">الشهادات</h3>
+                    <p class="text-gray-600 mb-4">الحصول على الشهادات البلدية المختلفة إلكترونياً</p>
+                    <div class="flex items-center gap-2 text-blue-600 font-bold group">
+                        <span>ابدأ الآن</span>
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card scroll-reveal p-6 bg-gradient-to-br from-gray-50 to-white rounded-3xl border border-gray-100 hover:border-amber-200 hover:shadow-xl cursor-pointer" style="transition-delay: 0.2s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-amber-500 to-amber-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">الفواتير</h3>
+                    <p class="text-gray-600 mb-4">دفع الفواتير البلدية ومتابعة الحسابات</p>
+                    <div class="flex items-center gap-2 text-amber-600 font-bold group">
+                        <span>ابدأ الآن</span>
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-card scroll-reveal p-6 bg-gradient-to-br from-gray-50 to-white rounded-3xl border border-gray-100 hover:border-red-200 hover:shadow-xl cursor-pointer" style="transition-delay: 0.3s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">الشكاوى</h3>
+                    <p class="text-gray-600 mb-4">تقديم الشكاوى ومتابعة معالجتها</p>
+                    <div class="flex items-center gap-2 text-red-600 font-bold group">
+                        <span>ابدأ الآن</span>
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="service-card scroll-reveal p-6 bg-gradient-to-br from-gray-50 to-white rounded-3xl border border-gray-100 hover:border-purple-200 hover:shadow-xl cursor-pointer" style="transition-delay: 0.4s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">الاستشارات</h3>
+                    <p class="text-gray-600 mb-4">الحصول على الاستشارات البلدية المتخصصة</p>
+                    <div class="flex items-center gap-2 text-purple-600 font-bold group">
+                        <span>ابدأ الآن</span>
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="service-card scroll-reveal p-6 bg-gradient-to-br from-gray-50 to-white rounded-3xl border border-gray-100 hover:border-teal-200 hover:shadow-xl cursor-pointer" style="transition-delay: 0.5s;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">المكاتب الهندسية</h3>
+                    <p class="text-gray-600 mb-4">خدمات المكاتب الهندسية المعتمدة</p>
+                    <div class="flex items-center gap-2 text-teal-600 font-bold group">
+                        <span>ابدأ الآن</span>
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View All Button -->
+            <div class="text-center mt-12 scroll-reveal">
+                <a href="#" class="inline-flex items-center gap-3 px-8 py-4 bg-municipal-600 text-white rounded-2xl font-bold text-lg hover:bg-municipal-700 transition-all hover:shadow-xl">
+                    <span>عرض جميع الخدمات</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-gradient-to-br from-municipal-50 to-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Content -->
+                <div class="scroll-reveal">
+                    <span class="inline-block px-4 py-2 bg-municipal-100 text-municipal-700 rounded-full text-sm font-bold mb-4">لماذا نحن</span>
+                    <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 mb-6">خدمة رقمية متكاملة للمواطنين</h2>
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">نقدم لكم تجربة رقمية سلسة وسهلة للوصول إلى جميع الخدمات البلدية من أي مكان وفي أي وقت</p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-municipal-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-800 mb-1">سرعة في المعالجة</h4>
+                                <p class="text-gray-600">معالجة سريعة لجميع الطلبات والمعاملات البلدية</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-800 mb-1">أمان وخصوصية</h4>
+                                <p class="text-gray-600">حماية بياناتكم بأعلى معايير الأمان الإلكترونية</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-amber-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-gray-800 mb-1"> متاحة 24/7</h4>
+                                <p class="text-gray-600">خدماتنا متاحة على مدار الساعة طوال أيام الأسبوع</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual -->
+                <div class="scroll-reveal relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-municipal-200 to-municipal-300 rounded-3xl transform rotate-3 scale-105 opacity-50"></div>
+                    <div class="relative bg-white rounded-3xl p-8 shadow-2xl">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-4 bg-municipal-50 rounded-2xl text-center">
+                                <div class="text-3xl font-bold text-municipal-600 mb-1">98%</div>
+                                <div class="text-sm text-gray-600">رضا المواطنين</div>
+                            </div>
+                            <div class="p-4 bg-blue-50 rounded-2xl text-center">
+                                <div class="text-3xl font-bold text-blue-600 mb-1">15K</div>
+                                <div class="text-sm text-gray-600">طلب شهرياً</div>
+                            </div>
+                            <div class="p-4 bg-amber-50 rounded-2xl text-center">
+                                <div class="text-3xl font-bold text-amber-600 mb-1">2 دقيقة</div>
+                                <div class="text-sm text-gray-600">متوسط المعالجة</div>
+                            </div>
+                            <div class="p-4 bg-purple-50 rounded-2xl text-center">
+                                <div class="text-3xl font-bold text-purple-600 mb-1">50+</div>
+                                <div class="text-sm text-gray-600">خدمة إلكترونية</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-br from-municipal-600 to-municipal-800 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-72 h-72 bg-white rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-10 right-10 w-72 h-72 bg-white rounded-full filter blur-3xl"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <div class="scroll-reveal">
+                <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">ابدأ الآن في استخدام الخدمات الإلكترونية</h2>
+                <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto">سجّل في بوابة الخدمات الإلكترونية واستفد من جميع الخدمات البلدية بسهولة وسرعة</p>
+
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#" class="px-8 py-4 bg-white text-municipal-700 rounded-2xl font-bold text-lg hover:bg-municipal-50 transition-all hover:shadow-2xl flex items-center gap-3">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
+                        </svg>
+                        <span>الدخول إلى البوابة</span>
+                    </a>
+                    <a href="#" class="px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-2xl font-bold text-lg border border-white/30 hover:bg-white/20 transition-all flex items-center gap-3">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span>دليل المستخدم</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <!-- Logo & Info -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-municipal-500 to-municipal-700 rounded-xl flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">بلدية القدس</h3>
+                            <p class="text-gray-400 text-sm">الخدمات الإلكترونية</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-6 max-w-md">نقدم لكم مجموعة شاملة من الخدمات البلدية عبر بوابتنا الإلكترونية لتسهيل حياتكم اليومية وتحسين تجربتكم مع البلدية</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-municipal-600 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-municipal-600 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center hover:bg-municipal-600 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">روابط سريعة</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-municipal-400 transition-colors">الرئيسية</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-municipal-400 transition-colors">الخدمات</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-municipal-400 transition-colors">عن البلدية</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-municipal-400 transition-colors">اتصل بنا</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">تواصل معنا</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <span>+970 2 234 5678</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <span>info@jerusalem.gov.ps</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-gray-400">
+                            <svg class="w-5 h-5 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span>القدس، شارع صلاح الدين</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 بلدية القدس. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Reveal Script -->
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

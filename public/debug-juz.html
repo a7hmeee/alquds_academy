@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تشخيص مشكلة الأجزاء</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #1a1a1a;
+            color: #d4af37;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            direction: rtl;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        
+        .box {
+            background: #2a2a2a;
+            border: 1px solid #d4af37;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .title {
+            color: #d4af37;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 10px;
+            background: #1a1a1a;
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            font-family: monospace;
+        }
+        
+        button {
+            background: #d4af37;
+            color: #1a1a1a;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+        }
+        
+        button:hover {
+            background: #e6c743;
+        }
+        
+        .result {
+            background: #1a1a1a;
+            border: 1px solid #d4af37;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .success {
+            color: #10B981;
+        }
+        
+        .error {
+            color: #EF4444;
+        }
+        
+        .warning {
+            color: #F59E0B;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        
+        th, td {
+            border: 1px solid #d4af37;
+            padding: 8px;
+            text-align: right;
+        }
+        
+        th {
+            background: #d4af37;
+            color: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 تشخيص مشكلة الأجزاء</h1>
+        
+        <!-- اختبار 1: احصل على السورة -->
+        <div class="box">
+            <div class="title">1️⃣ اختبر سورة محددة</div>
+            <input type="number" id="testSurahId" placeholder="رقم السورة (1-114)" value="2" min="1" max="114">
+            <button onclick="testSurah()">اختبر السورة</button>
+            <div id="result1" class="result"></div>
+        </div>
+        
+        <!-- اختبار 2: احصل على الأجزاء -->
+        <div class="box">
+            <div class="title">2️⃣ احصل على الأجزاء المرتبطة</div>
+            <button onclick="testJuz()">احصل على الأجزاء</button>
+            <div id="result2" class="result"></div>
+        </div>
+        
+        <!-- اختبار 3: تحقق من البيانات الخام -->
+        <div class="box">
+            <div class="title">3️⃣ البيانات الخام من Database</div>
+            <button onclick="testRawData()">احصل على البيانات الخام</button>
+            <div id="result3" class="result"></div>
+        </div>
+        
+        <!-- اختبار 4: اختبر الآيات -->
+        <div class="box">
+            <div class="title">4️⃣ اختبر الآيات</div>
+            <input type="number" id="juzId" placeholder="رقم الجزء" value="1">
+            <button onclick="testAyahs()">احصل على الآيات</button>
+            <div id="result4" class="result"></div>
+        </div>
+
+        <!-- معلومات مفيدة -->
+        <div class="box">
+            <div class="title">ℹ️ معلومات</div>
+            <button onclick="showInfo()">اعرض المعلومات</button>
+            <div id="info" class="result"></div>
+        </div>
+    </div>
+
+    <script>
+        const BASE_URL = 'http://127.0.0.1:8000';
+        let surahData = null;
+        
+        function show(elementId, content, type = 'success') {
+            const elem = document.getElementById(elementId);
+            const className = type === 'error' ? 'error' : (type === 'warning' ? 'warning' : 'success');
+            elem.innerHTML = `<div class="${className}">${content}</div>`;
+        }
+        
+        async function testSurah() {
+            const surahId = document.getElementById('testSurahId').value;
+            
+            if (!surahId) {
+                show('result1', 'ادخل رقم السورة', 'error');
+                return;
+            }
+            
+            show('result1', '⏳ جاري التحميل...');
+            
+            try {
+                const response = await fetch(`${BASE_URL}/api/recordings/surahs`);
+                const surahs = await response.json();
+                
+                const surah = surahs.find(s => s.id == surahId);
+                
+                if (!surah) {
+                    show('result1', `❌ السورة ${surahId} غير موجودة`, 'error');
+                    return;
+                }
+                
+                surahData = surah;
+                
+                const html = `
+✅ تم العثور على السورة:
+
+اسم السورة: ${surah.name_ar}
+الإنجليزية: ${surah.name_en}
+الرقم: ${surah.number}
+عدد الآيات: ${surah.ayah_count}
+عدد الأجزاء: ${surah.juz_count}
+ID: ${surah.id}
+                `;
+                show('result1', html, 'success');
+            } catch (error) {
+                show('result1', `❌ خطأ: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testJuz() {
+            if (!surahData) {
+                show('result2', '❌ اختبر السورة أولاً', 'error');
+                return;
+            }
+            
+            show('result2', '⏳ جاري التحميل...');
+            
+            try {
+                const response = await fetch(`${BASE_URL}/api/recordings/surah/${surahData.id}/juz`);
+                
+                if (!response.ok) {
+                    const error = await response.json();
+                    show('result2', `❌ خطأ HTTP ${response.status}:\n` + JSON.stringify(error, null, 2), 'error');
+                    return;
+                }
+                
+                const juzzes = await response.json();
+                
+                if (!juzzes || juzzes.length === 0) {
+                    show('result2', `⚠️ لا توجد أجزاء مرتبطة بالسورة ${surahData.name_ar}`, 'warning');
+                    return;
+                }
+                
+                let html = `✅ تم تحميل ${juzzes.length} أجزاء:\n\n`;
+                
+                html += '<table>';
+                html += '<tr><th>الرقم</th><th>الاسم</th><th>ID</th><th>Number</th></tr>';
+                juzzes.forEach(juz => {
+                    html += `<tr>
+                        <td>${juzzes.indexOf(juz) + 1}</td>
+                        <td>${juz.name_ar}</td>
+                        <td>${juz.id}</td>
+                        <td>${juz.number}</td>
+                    </tr>`;
+                });
+                html += '</table>';
+                
+                html += `\n\nالبيانات الخام:\n` + JSON.stringify(juzzes, null, 2);
+                
+                show('result2', html, 'success');
+            } catch (error) {
+                show('result2', `❌ خطأ: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testRawData() {
+            show('result3', '⏳ جاري التحميل...');
+            
+            try {
+                // احصل على جميع البيانات الخام
+                const response = await fetch(`${BASE_URL}/api/recordings/surahs`);
+                const surahs = await response.json();
+                
+                let html = `✅ إجمالي السور: ${surahs.length}\n\n`;
+                
+                // عرض أول 5 سور
+                html += '📋 أول 5 سور:\n';
+                surahs.slice(0, 5).forEach(s => {
+                    html += `\n${s.number}. ${s.name_ar}\n`;
+                    html += `   Ayahs: ${s.ayah_count}, Juz: ${s.juz_count}\n`;
+                });
+                
+                show('result3', html, 'success');
+            } catch (error) {
+                show('result3', `❌ خطأ: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testAyahs() {
+            if (!surahData) {
+                show('result4', '❌ اختبر السورة أولاً', 'error');
+                return;
+            }
+            
+            const juzId = document.getElementById('juzId').value;
+            
+            if (!juzId) {
+                show('result4', '❌ ادخل رقم الجزء', 'error');
+                return;
+            }
+            
+            show('result4', '⏳ جاري التحميل...');
+            
+            try {
+                const response = await fetch(`${BASE_URL}/api/recordings/surah/${surahData.id}/juz/${juzId}/ayahs`);
+                
+                if (!response.ok) {
+                    const error = await response.json();
+                    show('result4', `❌ خطأ HTTP ${response.status}:\n` + JSON.stringify(error, null, 2), 'error');
+                    return;
+                }
+                
+                const data = await response.json();
+                
+                const html = `✅ نطاق الآيات:
+
+من الآية: ${data.from || data.ayah_from || 'N/A'}
+إلى الآية: ${data.to || data.ayah_to || 'N/A'}
+
+البيانات الخام:
+${JSON.stringify(data, null, 2)}
+                `;
+                
+                show('result4', html, 'success');
+            } catch (error) {
+                show('result4', `❌ خطأ: ${error.message}`, 'error');
+            }
+        }
+        
+        function showInfo() {
+            const html = `
+ℹ️ المعلومات الأساسية:
+
+1. تأكد من:
+   - الخادم يشتغل (php artisan serve)
+   - الـ database متصلة
+   - البيانات موجودة في الـ database
+
+2. الأجزاء يجب أن تظهر إذا:
+   - السورة موجودة في surahs table
+   - الآيات مرتبطة بالسورة في ayahs table
+   - كل آية لها juz_id صحيح
+
+3. إذا ما حصلت على نتائج:
+   ✓ اختبر test-api.html أولاً
+   ✓ افتح F12 شوي Console
+   ✓ تفقد الأخطاء
+
+4. الملفات المهمة:
+   - RecordingController.php
+   - Surah model
+   - Ayah model
+   - Juz model
+                `;
+            show('info', html, 'warning');
+        }
+        
+        // Test on load
+        console.log('🧪 صفحة التشخيص جاهزة');
+    </script>
+</body>
+</html>

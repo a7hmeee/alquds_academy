@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test API Response</title>
+</head>
+<body>
+    <h1>Testing API Surah 2 Juz</h1>
+    <button onclick="testAPI()">Test API</button>
+    <pre id="output"></pre>
+    
+    <script>
+    async function testAPI() {
+        const url = '/api/recordings/surah/2/juz';
+        console.log('Testing:', url);
+        
+        try {
+            const response = await fetch(url);
+            const text = await response.text();
+            console.log('Raw response:', text);
+            
+            const data = JSON.parse(text);
+            console.log('Parsed data:', data);
+            
+            document.getElementById('output').textContent = 
+                'Status: ' + response.status + '\n\n' +
+                'Raw response:\n' + text + '\n\n' +
+                'Parsed:\n' + JSON.stringify(data, null, 2) + '\n\n' +
+                'First item: ' + JSON.stringify(data[0], null, 2);
+        } catch (error) {
+            document.getElementById('output').textContent = 'Error: ' + error.message;
+        }
+    }
+    </script>
+</body>
+</html>

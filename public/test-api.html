@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار الـ API - البحث عن السور</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #1a1a1a;
+            color: #d4af37;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+            color: #d4af37;
+        }
+        
+        .test-box {
+            background: #2a2a2a;
+            border: 1px solid #d4af37;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .test-title {
+            color: #d4af37;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .test-input {
+            width: 100%;
+            padding: 10px;
+            background: #1a1a1a;
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        
+        .test-button {
+            background: #d4af37;
+            color: #1a1a1a;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+        }
+        
+        .test-button:hover {
+            background: #e6c743;
+        }
+        
+        .result {
+            background: #1a1a1a;
+            border: 1px solid #d4af37;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        
+        .success {
+            color: #10B981;
+        }
+        
+        .error {
+            color: #EF4444;
+        }
+        
+        .loading {
+            color: #F59E0B;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 اختبار الـ API - نظام التسجيلات</h1>
+        
+        <!-- Test 1: Get All Surahs -->
+        <div class="test-box">
+            <div class="test-title">1️⃣ جميع السور</div>
+            <button class="test-button" onclick="testGetAllSurahs()">اختبر الـ API</button>
+            <div id="result1" class="result"></div>
+        </div>
+        
+        <!-- Test 2: Search Surah -->
+        <div class="test-box">
+            <div class="test-title">2️⃣ البحث عن سورة</div>
+            <input type="text" id="searchInput" class="test-input" placeholder="اكتب اسم السورة (البقرة، آل عمران، إلخ)">
+            <button class="test-button" onclick="testSearchSurah()">ابحث</button>
+            <div id="result2" class="result"></div>
+        </div>
+        
+        <!-- Test 3: Get Juz -->
+        <div class="test-box">
+            <div class="test-title">3️⃣ أجزاء السورة</div>
+            <input type="number" id="surahId" class="test-input" placeholder="رقم السورة (مثلاً: 1)" value="1">
+            <button class="test-button" onclick="testGetJuz()">احصل على الأجزاء</button>
+            <div id="result3" class="result"></div>
+        </div>
+        
+        <!-- Test 4: Get Ayahs -->
+        <div class="test-box">
+            <div class="test-title">4️⃣ الآيات</div>
+            <input type="number" id="surahId2" class="test-input" placeholder="رقم السورة" value="1">
+            <input type="number" id="juzId" class="test-input" placeholder="رقم الجزء" value="1">
+            <button class="test-button" onclick="testGetAyahs()">احصل على الآيات</button>
+            <div id="result4" class="result"></div>
+        </div>
+    </div>
+
+    <script>
+        const BASE_URL = 'http://127.0.0.1:8000';
+        
+        function showResult(elementId, data, isError = false) {
+            const elem = document.getElementById(elementId);
+            const className = isError ? 'error' : 'success';
+            elem.innerHTML = `<div class="${className}">${JSON.stringify(data, null, 2)}</div>`;
+        }
+        
+        function showLoading(elementId) {
+            const elem = document.getElementById(elementId);
+            elem.innerHTML = '<div class="loading">⏳ جاري التحميل...</div>';
+        }
+        
+        async function testGetAllSurahs() {
+            showLoading('result1');
+            try {
+                const response = await fetch(`${BASE_URL}/api/recordings/surahs`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+                const data = await response.json();
+                showResult('result1', {
+                    status: 'نجح ✅',
+                    count: data.length,
+                    first_surah: data[0],
+                    last_surah: data[data.length - 1]
+                });
+            } catch (error) {
+                showResult('result1', {
+                    status: 'فشل ❌',
+                    error: error.message
+                }, true);
+            }
+        }
+        
+        async function testSearchSurah() {
+            const query = document.getElementById('searchInput').value;
+            
+            if (!query) {
+                showResult('result2', { error: 'ادخل نص للبحث' }, true);
+                return;
+            }
+            
+            showLoading('result2');
+            try {
+                const response = await fetch(`${BASE_URL}/api/recordings/surahs/search?q=${encodeURIComponent(query)}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+                const data = await response.json();
+                showResult('result2', {
+                    status: 'نجح ✅',
+                    query: query,
+                    count: data.length,
+                    results: data
+                });
+            } catch (error) {
+                showResult('result2', {
+                    status: 'فشل ❌',
+                    error: error.message
+                }, true);
+            }
+        }
+        
+        async function testGetJuz() {
+            const surahId = document.getElementById('surahId').value;
+            
+            if (!surahId) {
+                showResult('result3', { error: 'ادخل رقم السورة' }, true);
+                return;
+            }
+            
+            showLoading('result3');
+            try {
+                const response = await fetch(`${BASE_URL}/api/recordings/surah/${surahId}/juz`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+                const data = await response.json();
+                showResult('result3', {
+                    status: 'نجح ✅',
+                    surah_id: surahId,
+                    juz_count: data.length,
+                    juzzes: data
+                });
+            } catch (error) {
+                showResult('result3', {
+                    status: 'فشل ❌',
+                    error: error.message
+                }, true);
+            }
+        }
+        
+        async function testGetAyahs() {
+            const surahId = document.getElementById('surahId2').value;
+            const juzId = document.getElementById('juzId').value;
+            
+            if (!surahId || !juzId) {
+                showResult('result4', { error: 'ادخل السورة والجزء' }, true);
+                return;
+            }
+            
+            showLoading('result4');
+            try {
+                const response = await fetch(`${BASE_URL}/api/recordings/surah/${surahId}/juz/${juzId}/ayahs`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+                const data = await response.json();
+                showResult('result4', {
+                    status: 'نجح ✅',
+                    surah_id: surahId,
+                    juz_id: juzId,
+                    ayah_range: data
+                });
+            } catch (error) {
+                showResult('result4', {
+                    status: 'فشل ❌',
+                    error: error.message
+                }, true);
+            }
+        }
+        
+        // Auto-test on load
+        console.log('🧪 صفحة الاختبار جاهزة');
+    </script>
+</body>
+</html>
