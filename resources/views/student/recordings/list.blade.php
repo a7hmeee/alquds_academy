@@ -5,7 +5,7 @@
 @section('content')
 <div>
     <div style="display: flex; gap: 12px; margin-bottom: 24px;">
-        <a href="{{ route('student.recordings.upload') }}" class="btn btn-primary">
+        <a href="{{ route('recordings.upload') }}" class="btn btn-primary">
             <i class="fas fa-plus"></i> رفع تسجيل جديد
         </a>
     </div>
@@ -121,7 +121,7 @@
             <i class="fas fa-inbox" style="font-size: 40px; color: var(--slate-blue); margin-bottom: 16px; display: block;"></i>
             <p style="color: var(--cream); font-size: 18px; margin-bottom: 8px;">لم تُرفع أي تسجيلات بعد</p>
             <p style="color: var(--slate-blue); margin-bottom: 20px;">ابدأ برفع تسجيلاتك الأولى لتساعدك المعلم على متابعة تقدمك</p>
-            <a href="{{ route('student.recordings.upload') }}" class="btn btn-primary">
+            <a href="{{ route('recordings.upload') }}" class="btn btn-primary">
                 <i class="fas fa-microphone"></i> رفع تسجيل الآن
             </a>
         </div>

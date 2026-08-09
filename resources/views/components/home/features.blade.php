@@ -1,19 +1,19 @@
-<section id="features" class="relative py-24 lg:py-32 bg-warm-white overflow-hidden">
+<section id="features" class="relative py-16 sm:py-20 lg:py-28 bg-warm-white overflow-hidden">
     <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[50rem] h-[30rem] bg-soft-mint-100/60 rounded-full blur-[120px] pointer-events-none"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16 lg:mb-20">
-            <span class="inline-block px-4 py-1.5 rounded-full bg-soft-mint-100 text-emerald-premium-700 text-sm font-bold border border-emerald-premium-200 mb-5">لماذا أكاديمية القدس؟</span>
-            <h2 class="reveal text-4xl lg:text-5xl font-black text-deep-green-800 leading-tight">
+        <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12 lg:mb-16">
+            <span class="inline-block px-4 py-1.5 rounded-full bg-soft-mint-100 text-emerald-premium-700 text-sm font-bold border border-emerald-premium-200 mb-4 sm:mb-5">لماذا أكاديمية القدس؟</span>
+            <h2 class="reveal text-3xl sm:text-4xl lg:text-5xl font-black text-deep-green-800 leading-tight">
                 كل ما تحتاجه لإتقان تلاوتك
                 <span class="text-gradient-emerald block mt-2">في مكان واحد</span>
             </h2>
-            <p class="reveal mt-6 text-lg text-deep-green-600 leading-relaxed" style="--reveal-delay: 100ms">
+            <p class="reveal mt-4 sm:mt-6 text-base sm:text-lg text-deep-green-600 leading-relaxed" style="--reveal-delay: 100ms">
                 أدوات متكاملة صُممت خصيصًا لرحلة تعلم القرآن الكريم، من التسجيل الأول حتى الإتقان.
             </p>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             @php
                 $features = [
                     [
@@ -56,16 +56,16 @@
             @endphp
 
             @foreach ($features as $i => $feature)
-                <div class="reveal group relative bg-white rounded-3xl p-8 border border-emerald-premium-100/80 shadow-card hover:shadow-premium hover:-translate-y-2 transition-all duration-500 overflow-hidden"
+                <div class="reveal group relative bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 border border-emerald-premium-100/80 shadow-card hover:shadow-premium hover:-translate-y-2 transition-all duration-500 overflow-hidden"
                      style="--reveal-delay: {{ $i * 80 }}ms">
                     <div class="absolute -top-16 -left-16 w-40 h-40 bg-soft-mint-100 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
 
                     <div class="relative">
-                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br {{ $feature['color'] }} flex items-center justify-center mb-6 shadow-lg group-hover:shadow-glow-md group-hover:scale-110 transition-all duration-300">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">{!! $feature['icon'] !!}</svg>
+                        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br {{ $feature['color'] }} flex items-center justify-center mb-4 sm:mb-6 shadow-lg group-hover:shadow-glow-md group-hover:scale-110 transition-all duration-300">
+                            <svg class="w-7 h-7 sm:w-8 sm:h-8 text-white" fill="currentColor" viewBox="0 0 20 20">{!! $feature['icon'] !!}</svg>
                         </div>
-                        <h3 class="text-xl font-extrabold text-deep-green-800 mb-3">{{ $feature['title'] }}</h3>
-                        <p class="text-deep-green-600 leading-relaxed text-[15px]">{{ $feature['desc'] }}</p>
+                        <h3 class="text-lg sm:text-xl font-extrabold text-deep-green-800 mb-2 sm:mb-3">{{ $feature['title'] }}</h3>
+                        <p class="text-deep-green-600 leading-relaxed text-sm sm:text-[15px]">{{ $feature['desc'] }}</p>
                     </div>
                 </div>
             @endforeach

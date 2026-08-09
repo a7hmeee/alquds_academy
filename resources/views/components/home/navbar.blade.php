@@ -4,18 +4,18 @@
     aria-label="التنقل الرئيسي"
 >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-20">
+        <div class="flex items-center justify-between h-16 sm:h-20">
             <!-- Logo -->
             <a href="#home" class="flex items-center gap-3 group" aria-label="أكاديمية القدس - الصفحة الرئيسية">
-                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-premium-500 to-deep-green-800 flex items-center justify-center shadow-glow-sm group-hover:shadow-glow-md transition-shadow duration-300 relative overflow-hidden">
-                    <svg class="w-7 h-7 text-soft-mint-100 relative z-10" fill="currentColor" viewBox="0 0 24 24">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-emerald-premium-500 to-deep-green-800 flex items-center justify-center shadow-glow-sm group-hover:shadow-glow-md transition-shadow duration-300 relative overflow-hidden">
+                    <svg class="w-6 h-6 sm:w-7 sm:h-7 text-soft-mint-100 relative z-10" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 18c-3.31-.91-6-4.93-6-9v-7.5l6-3 6 3V11c0 4.07-2.69 8.09-6 9z"/>
                     </svg>
                     <div class="absolute inset-0 opacity-20 pattern-islamic-dark"></div>
                 </div>
                 <div class="leading-tight">
-                    <span class="block text-lg font-extrabold text-deep-green-800">أكاديمية القدس</span>
-                    <span class="block text-xs font-medium text-emerald-premium-600">للقرآن الكريم</span>
+                    <span class="block text-base sm:text-lg font-extrabold text-deep-green-800">أكاديمية القدس</span>
+                    <span class="block text-[11px] sm:text-xs font-medium text-emerald-premium-600">للقرآن الكريم</span>
                 </div>
             </a>
 
@@ -85,7 +85,7 @@
         class="lg:hidden max-h-0 overflow-hidden transition-all duration-500 ease-out glass border-t border-white/50"
         aria-hidden="true"
     >
-        <div class="px-6 py-6 space-y-1">
+        <div class="px-5 py-4 sm:px-6 space-y-1">
             @foreach ($links as $key => [$label, $href])
                 <a href="{{ $href }}"
                    data-menu-link

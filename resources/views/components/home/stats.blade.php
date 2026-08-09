@@ -1,9 +1,9 @@
-<section id="stats" class="relative py-16 lg:py-20 bg-warm-white overflow-hidden">
+<section id="stats" class="relative py-12 sm:py-16 lg:py-20 bg-warm-white overflow-hidden">
     <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-l from-transparent via-emerald-premium-400/30 to-transparent"></div>
     <div class="absolute inset-0 pattern-islamic-light opacity-40 pointer-events-none"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8" x-data="statsCounter({{ json_encode([
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8 sm:gap-x-6 lg:gap-8" x-data="statsCounter({{ json_encode([
             'students' => $stats['students'],
             'courses' => $stats['courses'],
             'teachers' => $stats['teachers'],
@@ -26,14 +26,14 @@
 
             @foreach ($statsData as $key => [$label, $suffix])
                 <div class="reveal text-center group">
-                    <div class="mx-auto mb-5 w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-premium-500 to-emerald-premium-600 flex items-center justify-center shadow-lg group-hover:shadow-glow-md group-hover:scale-105 transition-all duration-300">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">{!! $icons[$key] !!}</svg>
+                    <div class="mx-auto mb-3 sm:mb-5 w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-emerald-premium-500 to-emerald-premium-600 flex items-center justify-center shadow-lg group-hover:shadow-glow-md group-hover:scale-105 transition-all duration-300">
+                        <svg class="w-7 h-7 sm:w-8 sm:h-8 text-white" fill="currentColor" viewBox="0 0 20 20">{!! $icons[$key] !!}</svg>
                     </div>
-                    <div class="text-4xl lg:text-5xl font-black text-deep-green-800 leading-none">
+                    <div class="text-3xl sm:text-4xl lg:text-5xl font-black text-deep-green-800 leading-none">
                         +<span x-text="display('{{ $key }}')">0</span>
                     </div>
-                    <p class="mt-3 text-sm font-semibold text-emerald-premium-600" x-text="'{{ $label }}'"></p>
-                    <p class="text-xs text-deep-green-500">{{ $suffix }}</p>
+                    <p class="mt-2 sm:mt-3 text-[13px] sm:text-sm font-semibold text-emerald-premium-600" x-text="'{{ $label }}'"></p>
+                    <p class="text-[11px] sm:text-xs text-deep-green-500">{{ $suffix }}</p>
                 </div>
             @endforeach
         </div>

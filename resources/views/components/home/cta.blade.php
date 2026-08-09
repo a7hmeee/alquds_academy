@@ -1,6 +1,6 @@
-<section id="cta" class="relative py-20 lg:py-28 bg-warm-white overflow-hidden">
+<section id="cta" class="relative py-16 sm:py-20 lg:py-28 bg-warm-white overflow-hidden">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="reveal relative rounded-[2.5rem] bg-gradient-to-br from-deep-green-800 via-deep-green-900 to-emerald-premium-900 overflow-hidden p-10 sm:p-16 lg:p-20 text-center shadow-premium">
+        <div class="reveal relative rounded-[2rem] sm:rounded-[2.5rem] bg-gradient-to-br from-deep-green-800 via-deep-green-900 to-emerald-premium-900 overflow-hidden p-6 sm:p-12 lg:p-16 text-center shadow-premium">
             <!-- Background -->
             <div class="absolute inset-0 pattern-islamic-dark opacity-50"></div>
             <div class="absolute -top-32 -right-32 w-[28rem] h-[28rem] bg-emerald-premium-500/25 rounded-full blur-[110px] animate-float-very-slow"></div>
@@ -15,25 +15,25 @@
             </div>
 
             <div class="relative z-10 max-w-2xl mx-auto">
-                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.2]">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-[1.2]">
                     ابدأ رحلتك مع
                     <span class="text-gradient-mint">القرآن</span>
                     اليوم
                 </h2>
-                <p class="mt-6 text-lg sm:text-xl text-soft-mint-100/80 leading-relaxed font-medium">
+                <p class="mt-4 sm:mt-6 text-base sm:text-xl text-soft-mint-100/80 leading-relaxed font-medium">
                     خطوات صغيرة كل يوم تصنع فرقًا كبيرًا في تلاوتك.
                 </p>
 
-                <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+                <div class="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                     <a href="{{ route('register') }}"
-                       class="group inline-flex items-center justify-center gap-3 px-10 py-4 rounded-2xl font-extrabold text-lg bg-gradient-to-l from-emerald-premium-400 to-emerald-premium-500 text-deep-green-900 hover:shadow-glow-lg hover:-translate-y-1 transition-all duration-300">
+                       class="group inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl font-extrabold text-base sm:text-lg bg-gradient-to-l from-emerald-premium-400 to-emerald-premium-500 text-deep-green-900 hover:shadow-glow-lg hover:-translate-y-1 transition-all duration-300">
                         إنشاء حساب مجاني
                         <svg class="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
                         </svg>
                     </a>
                     <a href="#courses"
-                       class="inline-flex items-center justify-center gap-3 px-10 py-4 rounded-2xl font-extrabold text-lg text-white glass-dark border border-white/25 hover:bg-white/15 hover:-translate-y-1 transition-all duration-300">
+                       class="inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl font-extrabold text-base sm:text-lg text-white glass-dark border border-white/25 hover:bg-white/15 hover:-translate-y-1 transition-all duration-300">
                         استكشف الدورات
                     </a>
                 </div>

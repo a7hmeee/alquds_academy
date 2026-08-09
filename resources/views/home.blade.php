@@ -33,6 +33,7 @@
         <x-home.teachers :teachers="$teachers" />
         <x-home.testimonials />
         <x-home.academy-message />
+        <x-home.memorial />
         <x-home.faq />
         <x-home.cta />
     </main>

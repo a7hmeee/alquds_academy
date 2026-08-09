@@ -84,7 +84,7 @@
 
                 {{-- Quick Actions --}}
                 <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <a href="{{ route('student.recordings.upload') }}" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                    <a href="{{ route('recordings.upload') }}" class="btn btn-primary" style="width: 100%; justify-content: center;">
                         <i class="fas fa-microphone"></i> رفع تسجيل
                     </a>
                     <a href="{{ route('circles.my-progress', $currentCircle) }}" class="btn btn-secondary" style="width: 100%; justify-content: center;">

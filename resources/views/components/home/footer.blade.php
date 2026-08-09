@@ -2,8 +2,8 @@
     <div class="absolute inset-0 pattern-islamic-dark opacity-40 pointer-events-none"></div>
     <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-l from-transparent via-emerald-premium-400/40 to-transparent"></div>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16 lg:py-20">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
             <!-- Brand -->
             <div class="lg:col-span-1">
                 <a href="#home" class="flex items-center gap-3 mb-5">
@@ -53,7 +53,7 @@
 
                 <div class="mt-8">
                     <h3 class="text-white font-extrabold mb-4 text-base">تابعنا</h3>
-                    <div class="flex gap-3">
+                    <div class="flex flex-wrap gap-3">
                         @php
                             $socials = [
                                 ['X', '<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>'],
@@ -72,7 +72,7 @@
             </nav>
         </div>
 
-        <div class="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-soft-mint-100/50">
+        <div class="mt-10 sm:mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-soft-mint-100/50">
             <p>© {{ date('Y') }} أكاديمية القدس للقرآن الكريم — جميع الحقوق محفوظة</p>
             <p class="flex items-center gap-2">
                 صُنع بحب لإتقان كتاب الله

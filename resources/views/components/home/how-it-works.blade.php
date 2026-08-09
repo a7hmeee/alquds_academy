@@ -1,16 +1,16 @@
-<section id="how-it-works" class="relative py-24 lg:py-32 bg-gradient-to-br from-deep-green-900 via-deep-green-800 to-emerald-premium-900 overflow-hidden">
+<section id="how-it-works" class="relative py-16 sm:py-20 lg:py-28 bg-gradient-to-br from-deep-green-900 via-deep-green-800 to-emerald-premium-900 overflow-hidden">
     <div class="absolute inset-0 pattern-islamic-dark opacity-60"></div>
     <div class="absolute top-1/4 -left-32 w-96 h-96 bg-emerald-premium-500/20 rounded-full blur-[100px]"></div>
     <div class="absolute bottom-0 -right-32 w-96 h-96 bg-gold-accent-500/10 rounded-full blur-[100px]"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16 lg:mb-20">
-            <span class="inline-block px-4 py-1.5 rounded-full bg-white/10 border border-white/15 text-soft-mint-100 text-sm font-bold mb-5">كيف تعمل المنصة</span>
-            <h2 class="reveal text-4xl lg:text-5xl font-black text-white leading-tight">
+        <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12 lg:mb-16">
+            <span class="inline-block px-4 py-1.5 rounded-full bg-white/10 border border-white/15 text-soft-mint-100 text-sm font-bold mb-4 sm:mb-5">كيف تعمل المنصة</span>
+            <h2 class="reveal text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight">
                 رحلة بسيطة نحو
                 <span class="text-gradient-mint block mt-2">تلاوة أفضل</span>
             </h2>
-            <p class="reveal mt-6 text-lg text-soft-mint-100/80 leading-relaxed" style="--reveal-delay: 100ms">
+            <p class="reveal mt-4 sm:mt-6 text-base sm:text-lg text-soft-mint-100/80 leading-relaxed" style="--reveal-delay: 100ms">
                 أربع خطوات واضحة تأخذك من البداية وحتى الإتقان.
             </p>
         </div>
@@ -48,7 +48,7 @@
         <!-- Mobile vertical timeline -->
         <div class="lg:hidden relative max-w-md mx-auto">
             <div class="absolute top-0 bottom-0 right-7 w-0.5 bg-emerald-premium-400/30"></div>
-            <div class="space-y-10">
+            <div class="space-y-8 sm:space-y-10">
                 @foreach ($steps as $i => [$num, $title, $desc, $icon])
                     <div class="reveal relative flex gap-5" style="--reveal-delay: {{ $i * 100 }}ms">
                         <div class="relative shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-premium-400 to-emerald-premium-600 flex items-center justify-center text-white font-black shadow-lg z-10">
@@ -63,9 +63,9 @@
             </div>
         </div>
 
-        <div class="reveal text-center mt-16">
+        <div class="reveal text-center mt-10 sm:mt-12 lg:mt-16">
             <a href="{{ route('register') }}"
-               class="inline-flex items-center gap-3 px-9 py-4 rounded-2xl font-extrabold text-lg bg-white text-deep-green-800 hover:shadow-glow-md hover:-translate-y-1 transition-all duration-300">
+               class="inline-flex items-center gap-3 px-8 sm:px-9 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl font-extrabold text-base sm:text-lg bg-white text-deep-green-800 hover:shadow-glow-md hover:-translate-y-1 transition-all duration-300">
                 ابدأ رحلتك الآن
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>

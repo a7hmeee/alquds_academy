@@ -1,10 +1,10 @@
-<section id="faq" class="relative py-24 lg:py-32 bg-warm-white overflow-hidden">
+<section id="faq" class="relative py-16 sm:py-20 lg:py-28 bg-warm-white overflow-hidden">
     <div class="absolute -top-24 -left-24 w-96 h-96 bg-emerald-premium-200/20 rounded-full blur-[100px] pointer-events-none"></div>
 
     <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-2xl mx-auto mb-14 lg:mb-16">
-            <span class="inline-block px-4 py-1.5 rounded-full bg-soft-mint-100 text-emerald-premium-700 text-sm font-bold border border-emerald-premium-200 mb-5">الأسئلة الشائعة</span>
-            <h2 class="reveal text-4xl lg:text-5xl font-black text-deep-green-800 leading-tight">
+        <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-12 lg:mb-16">
+            <span class="inline-block px-4 py-1.5 rounded-full bg-soft-mint-100 text-emerald-premium-700 text-sm font-bold border border-emerald-premium-200 mb-4 sm:mb-5">الأسئلة الشائعة</span>
+            <h2 class="reveal text-3xl sm:text-4xl lg:text-5xl font-black text-deep-green-800 leading-tight">
                 لديك سؤال؟
                 <span class="text-gradient-emerald block mt-2">لدينا الإجابة</span>
             </h2>

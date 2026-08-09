@@ -40,6 +40,9 @@ Alpine.start();
     const tiltEl = document.querySelector('[data-tilt]');
     if (!tiltEl) return;
 
+    const isFinePointer = window.matchMedia?.('(pointer: fine)')?.matches ?? false;
+    if (!isFinePointer) return;
+
     const strength = 8;
 
     tiltEl.addEventListener('mousemove', (e) => {
