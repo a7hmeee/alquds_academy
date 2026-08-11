@@ -395,7 +395,7 @@ let allSurahs = [];
 
 async function loadSurahs() {
     try {
-        const response = await fetch('/api/recordings/surahs');
+        const response = await fetch('{{ route("api.recordings.surahs") }}');
         if (!response.ok) throw new Error('HTTP ' + response.status);
         allSurahs = await response.json();
         const searchEl = document.getElementById('surahSearch');
@@ -464,7 +464,7 @@ function selectSurah(id, name, ayahs) {
 
 async function loadJuz(surahId, maxAyahs) {
     try {
-        const response = await fetch(`/api/recordings/surah/${surahId}/juz`);
+        const response = await fetch(`{{ route('api.recordings.surah.juz', ['surahId' => '__ID__']) }}`.replace('__ID__', surahId));
         if (!response.ok) throw new Error('HTTP ' + response.status);
         const juzzes = await response.json();
 
@@ -489,7 +489,7 @@ async function loadJuz(surahId, maxAyahs) {
 
 async function loadAyahs(surahId, juzId, maxAyahs) {
     try {
-        const response = await fetch(`/api/recordings/surah/${surahId}/juz/${juzId}/ayahs`);
+        const response = await fetch(`{{ route('api.recordings.surah.juz.ayahs', ['surahId' => '__ID__', 'juzId' => '__JID__']) }}`.replace('__ID__', surahId).replace('__JID__', juzId));
         if (!response.ok) throw new Error('HTTP ' + response.status);
         const data = await response.json();
 

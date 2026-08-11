@@ -15,7 +15,7 @@
         <div data-particles class="absolute inset-0 overflow-hidden pointer-events-none"></div>
     </div>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-28 pb-16 sm:pb-20 w-full">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 w-full">
         <div class="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-20 items-center">
 
             <!-- Text content -->
@@ -39,14 +39,14 @@
 
                 <div class="reveal mt-7 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start" style="--reveal-delay: 300ms">
                     <a href="{{ route('register') }}"
-                       class="group w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl font-extrabold text-base sm:text-lg text-white bg-gradient-to-l from-emerald-premium-500 to-emerald-premium-600 shadow-glow-md hover:shadow-glow-lg hover:-translate-y-1 transition-all duration-300">
+                       class="group w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-extrabold text-base sm:text-lg text-white bg-gradient-to-l from-emerald-premium-500 to-emerald-premium-600 shadow-glow-md hover:shadow-glow-lg hover:-translate-y-1 transition-all duration-300">
                         ابدأ التعلم الآن
                         <svg class="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
                         </svg>
                     </a>
                     <a href="#about"
-                       class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl font-extrabold text-base sm:text-lg text-white glass-dark border border-white/20 hover:bg-white/15 hover:-translate-y-1 transition-all duration-300">
+                       class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-extrabold text-base sm:text-lg text-white glass-dark border border-white/20 hover:bg-white/15 hover:-translate-y-1 transition-all duration-300">
                         اكتشف الأكاديمية
                     </a>
                 </div>

@@ -183,29 +183,6 @@ body {
 }
 
 /* ─────────────────────────────────────────────
-   Navbar underline links
-───────────────────────────────────────────── */
-.nav-underline {
-    position: relative;
-}
-.nav-underline::after {
-    content: '';
-    position: absolute;
-    right: 50%;
-    bottom: -6px;
-    height: 2px;
-    width: 0;
-    background: linear-gradient(90deg, #10B981, #34D399);
-    border-radius: 2px;
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    transform: translateX(50%);
-}
-.nav-underline:hover::after,
-.nav-underline.is-active::after {
-    width: 100%;
-}
-
-/* ─────────────────────────────────────────────
    Shimmer / animated gradient
 ───────────────────────────────────────────── */
 .animate-gradient-x {

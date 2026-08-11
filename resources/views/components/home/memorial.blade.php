@@ -12,19 +12,19 @@
 
         <p class="reveal inline-block px-4 py-1.5 rounded-full bg-white/10 border border-gold-accent-400/30 text-gold-accent-300 text-sm font-bold mb-4 sm:mb-5" style="--reveal-delay: 50ms">صدقة جارية</p>
 
-        <h2 class="reveal text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-[1.3]">
+        <h2 class="reveal text-[27px] sm:text-4xl lg:text-5xl font-black text-white leading-[1.3]">
             عن روح المرحومة
             <span class="text-gradient-mint block mt-2">فريال إسماعيل العسود</span>
         </h2>
 
-        <p class="reveal mt-4 sm:mt-6 text-base sm:text-lg text-soft-mint-100/75 leading-relaxed max-w-2xl mx-auto" style="--reveal-delay: 100ms">
+        <p class="reveal mt-4 sm:mt-6 text-[15px] sm:text-lg text-soft-mint-100/75 leading-relaxed max-w-2xl mx-auto" style="--reveal-delay: 100ms">
             ما زال هذا العمل قائمًا وثمراته مستمرة بعد رحيلها، فإن أفضل ما يصل إلى الميت ما يتركه من أثر طيب وصدقة جارية تدوم. نسأل الله أن يتقبّلها بقبول حسن، وأن يجعل ما تقدمه هذه الأكاديمية من علم القرآن وتلاوته في ميزان حسناتها.
         </p>
 
         <div class="reveal mt-8 sm:mt-10 inline-block max-w-xl mx-auto" style="--reveal-delay: 200ms">
-            <div class="relative rounded-3xl bg-white/5 backdrop-blur-sm border border-gold-accent-400/20 p-6 sm:p-8">
+            <div class="relative rounded-3xl bg-white/5 backdrop-blur-sm border border-gold-accent-400/20 p-5 sm:p-8">
                 <div class="absolute top-0 inset-x-10 h-0.5 bg-gradient-to-l from-transparent via-gold-accent-400/60 to-transparent"></div>
-                <p class="text-lg sm:text-2xl leading-[2.1] text-soft-mint-100 font-medium" style="font-family: 'Amiri', serif">
+                <p class="text-[15px] sm:text-xl leading-[2.1] text-soft-mint-100 font-medium" style="font-family: 'Amiri', serif">
                     اللهم اغفر لها وارحمها وعافها واعفُ عنها، وأكرم نُزُلَها ووسّع مدخلها، واغسلها بالماء والثلج والبَرَد، ونقّها من الخطايا كما ينقّى الثوب الأبيض من الدنس. اللهم اجعل ما بقي لها من صدقات وأعمال صالحة نورًا في قبرها، وشاهدًا لها يوم العرض عليك.
                 </p>
             </div>

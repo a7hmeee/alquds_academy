@@ -125,7 +125,7 @@ function loadJuzForSurah(surahId) {
     document.getElementById('ayah_to').innerHTML = '<option value="">-- اختر --</option>';
     if (!surahId) return;
 
-    fetch('/api/recordings/surah/' + surahId + '/juz')
+    fetch('{{ route("api.recordings.surah.juz", ["surahId" => "__ID__"]) }}'.replace('__ID__', surahId))
         .then(r => r.json())
         .then(juzzes => {
             if (Array.isArray(juzzes)) {
@@ -148,7 +148,7 @@ function loadAyahsForJuz() {
     toSel.innerHTML = '<option value="">-- اختر --</option>';
     if (!surahId || !juzId) return;
 
-    fetch('/api/recordings/surah/' + surahId + '/juz/' + juzId + '/ayahs')
+    fetch('{{ route("api.recordings.surah.juz.ayahs", ["surahId" => "__ID__", "juzId" => "__JID__"]) }}'.replace('__ID__', surahId).replace('__JID__', juzId))
         .then(r => r.json())
         .then(data => {
             const ayahs = data.ayahs || [];

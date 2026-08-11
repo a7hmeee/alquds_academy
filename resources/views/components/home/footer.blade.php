@@ -6,16 +6,13 @@
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
             <!-- Brand -->
             <div class="lg:col-span-1">
-                <a href="#home" class="flex items-center gap-3 mb-5">
-                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-premium-500 to-emerald-premium-600 flex items-center justify-center shadow-glow-sm">
-                        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 18c-3.31-.91-6-4.93-6-9v-7.5l6-3 6 3V11c0 4.07-2.69 8.09-6 9z"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <p class="text-lg font-extrabold text-white">أكاديمية القدس</p>
-                        <p class="text-xs text-emerald-premium-300/70 font-semibold">للقرآن الكريم</p>
-                    </div>
+                <a href="#home" class="block w-fit mb-5" aria-label="أكاديمية القدس - الصفحة الرئيسية">
+                    <img
+                        src="{{ asset('logo.png') }}"
+                        alt="أكاديمية القدس للقرآن الكريم"
+                        class="w-auto max-w-[170px] sm:max-w-[190px] lg:max-w-[210px] h-auto object-contain"
+                        style="aspect-ratio: 537 / 330;"
+                    >
                 </a>
                 <p class="text-sm leading-relaxed">
                     منصة رقمية حديثة لتعلّم القرآن الكريم وإتقان التلاوة، مع متابعة دقيقة وتقييم مباشر من معلميك.

@@ -295,8 +295,17 @@
     // تحميل الأجزاء
     async function loadJuz(surahId) {
         try {
-            const response = await fetch(`{{ url('/api/recordings/surah') }}/${surahId}/juz`);
+            const response = await fetch(`{{ route('api.recordings.surah.juz', ['surahId' => '__ID__']) }}`.replace('__ID__', surahId));
+            if (!response.ok) {
+                console.error('Juz API error:', response.status, await response.text());
+                return;
+            }
             const juzData = await response.json();
+
+            if (!Array.isArray(juzData) || juzData.length === 0) {
+                console.warn('No juz data for surah', surahId);
+                return;
+            }
 
             juzSelect.innerHTML = '<option value="">اختر الجزء...</option>' + juzData.map(juz => `
                 <option value="${juz.id}">${juz.name_ar}</option>

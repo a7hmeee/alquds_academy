@@ -61,8 +61,8 @@
                     <div class="absolute -top-16 -left-16 w-40 h-40 bg-soft-mint-100 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
 
                     <div class="relative">
-                        <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br {{ $feature['color'] }} flex items-center justify-center mb-4 sm:mb-6 shadow-lg group-hover:shadow-glow-md group-hover:scale-110 transition-all duration-300">
-                            <svg class="w-7 h-7 sm:w-8 sm:h-8 text-white" fill="currentColor" viewBox="0 0 20 20">{!! $feature['icon'] !!}</svg>
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br {{ $feature['color'] }} flex items-center justify-center mb-4 sm:mb-6 shadow-lg group-hover:shadow-glow-md group-hover:scale-110 transition-all duration-300">
+                            <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white" fill="currentColor" viewBox="0 0 20 20">{!! $feature['icon'] !!}</svg>
                         </div>
                         <h3 class="text-lg sm:text-xl font-extrabold text-deep-green-800 mb-2 sm:mb-3">{{ $feature['title'] }}</h3>
                         <p class="text-deep-green-600 leading-relaxed text-sm sm:text-[15px]">{{ $feature['desc'] }}</p>

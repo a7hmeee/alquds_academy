@@ -59,7 +59,7 @@
                     </blockquote>
 
                     <figcaption class="flex items-center gap-3 pt-4 sm:pt-5 border-t border-emerald-premium-100/70">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-emerald-premium-500 to-deep-green-800 flex items-center justify-center text-white font-black">
+                        <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-emerald-premium-500 to-deep-green-800 flex items-center justify-center text-white font-black">
                             {{ mb_substr($t['name'], 0, 1) }}
                         </div>
                         <div>

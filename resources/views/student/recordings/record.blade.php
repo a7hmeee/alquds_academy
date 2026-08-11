@@ -233,7 +233,7 @@ let allSurahs = [];
 async function loadSurahs() {
     try {
         console.log('جاري تحميل السور...');
-        const response = await fetch('/api/recordings/surahs');
+        const response = await fetch('{{ route("api.recordings.surahs") }}');
         
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -329,7 +329,7 @@ function selectSurah(id, name, ayahs) {
 async function loadJuz(surahId, maxAyahs) {
     try {
         console.log(`جاري تحميل أجزاء السورة ${surahId}...`);
-        const response = await fetch(`/api/recordings/surah/${surahId}/juz`);
+        const response = await fetch(`{{ route('api.recordings.surah.juz', ['surahId' => '__ID__']) }}`.replace('__ID__', surahId));
         
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -385,7 +385,7 @@ async function loadJuz(surahId, maxAyahs) {
 async function loadAyahs(surahId, juzId, maxAyahs) {
     try {
         console.log(`جاري تحميل الآيات: السورة ${surahId}, الجزء ${juzId}...`);
-        const response = await fetch(`/api/recordings/surah/${surahId}/juz/${juzId}/ayahs`);
+        const response = await fetch(`{{ route('api.recordings.surah.juz.ayahs', ['surahId' => '__ID__', 'juzId' => '__JID__']) }}`.replace('__ID__', surahId).replace('__JID__', juzId));
         
         const responseText = await response.text();
         console.log('Response status:', response.status);

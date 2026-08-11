@@ -44,30 +44,45 @@
         document.addEventListener('DOMContentLoaded', function () {
             const menuBtn = document.querySelector('[data-menu-btn]');
             const mobileMenu = document.querySelector('[data-mobile-menu]');
+            const overlay = document.querySelector('[data-menu-overlay]');
+            const closeBtn = document.querySelector('[data-menu-close]');
             const icon = document.querySelector('[data-menu-icon]');
+
+            const burgerIcon = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
+            const closeIcon = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>';
 
             function closeMenu() {
                 mobileMenu?.classList.remove('open');
+                overlay?.classList.remove('open');
                 menuBtn?.setAttribute('aria-expanded', 'false');
                 mobileMenu?.setAttribute('aria-hidden', 'true');
-                if (icon) {
-                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
-                }
+                overlay?.setAttribute('aria-hidden', 'true');
+                if (icon) icon.innerHTML = burgerIcon;
                 document.body.style.overflow = '';
+            }
+
+            function openMenu() {
+                mobileMenu?.classList.add('open');
+                overlay?.classList.add('open');
+                menuBtn?.setAttribute('aria-expanded', 'true');
+                mobileMenu?.setAttribute('aria-hidden', 'false');
+                overlay?.setAttribute('aria-hidden', 'false');
+                if (icon) icon.innerHTML = closeIcon;
+                document.body.style.overflow = 'hidden';
             }
 
             if (menuBtn && mobileMenu) {
                 menuBtn.addEventListener('click', () => {
-                    const open = mobileMenu.classList.toggle('open');
-                    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-                    mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
-                    document.body.style.overflow = open ? 'hidden' : '';
-                    if (icon) {
-                        icon.innerHTML = open
-                            ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>'
-                            : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
+                    const open = mobileMenu.classList.contains('open');
+                    if (open) {
+                        closeMenu();
+                    } else {
+                        openMenu();
                     }
                 });
+
+                closeBtn?.addEventListener('click', closeMenu);
+                overlay?.addEventListener('click', closeMenu);
 
                 document.querySelectorAll('[data-menu-link]').forEach((link) => {
                     link.addEventListener('click', closeMenu);
